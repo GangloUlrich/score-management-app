@@ -1,0 +1,23 @@
+<form method="post" (ngSubmit)="saveNewUser()" [formGroup]="registerForm">
+  <div>
+    <label for="">Name</label>
+    <input type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="">Email</label>
+    <input type="email" formControlName="email">
+  </div>
+
+  <div>
+    <label for="">Password</label>
+    <input type="password" formControlName="password">
+  </div>
+
+  <div>
+    <label for="">Password confirmation</label>
+    <input type="password" formControlName="password_confirmation">
+  </div>
+
+  <button type="submit">Creer un compte</button>
+</form>

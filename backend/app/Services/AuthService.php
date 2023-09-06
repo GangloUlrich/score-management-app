@@ -23,7 +23,7 @@ class AuthService
         }
 
         $user =  auth()->user();
-        $token = $user->createToken()->plainTextToken;
+        $token = $user->createToken('user token')->plainTextToken;
 
         return response()->json( [
             'user' => $user,
