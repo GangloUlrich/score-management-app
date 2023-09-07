@@ -28,11 +28,11 @@ Route::post('logout',[\App\Http\Controllers\AuthController::class,'logout'])->mi
 Route::middleware('auth:sanctum')->group(function (){
 
     //Teams
-    Route::get('teams', [\App\Http\Requests\TeamFormRequest::class,'index']);
-    Route::post('teams', [\App\Http\Requests\TeamFormRequest::class,'store']);
-    Route::post('teams/{id}', [\App\Http\Requests\TeamFormRequest::class,'update']);
-    Route::get('teams/{id}', [\App\Http\Requests\TeamFormRequest::class,'show']);
-    Route::delete('teams/{id}', [\App\Http\Requests\TeamFormRequest::class,'destroy']);
+    Route::get('teams', [\App\Http\Controllers\TeamController::class,'index']);
+    Route::post('teams', [\App\Http\Controllers\TeamController::class,'store']);
+    Route::post('teams/{id}', [\App\Http\Controllers\TeamController::class,'update']);
+    Route::get('teams/{id}', [\App\Http\Controllers\TeamController::class,'show']);
+    Route::delete('teams/{id}', [\App\Http\Controllers\TeamController::class,'destroy']);
 
 
 
