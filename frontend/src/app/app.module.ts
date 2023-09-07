@@ -8,6 +8,7 @@ import localeFr from '@angular/common/locales/fr';
 import {HashLocationStrategy, LocationStrategy, registerLocaleData} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptorInterceptor} from "./Core/interceptor/auth-interceptor.interceptor";
+import {AuthGuard} from "./Core/guard/auth.guard";
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -26,6 +27,7 @@ registerLocaleData(localeFr, 'fr');
       useClass: AuthInterceptorInterceptor,
       multi: true,
     },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
