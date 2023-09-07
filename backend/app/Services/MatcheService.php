@@ -20,7 +20,7 @@ class MatcheService
 
     public  static function update(MatcheFormRequest $request, $id){
         $matche = Matche::find($id);
-        $matche->update($request->all());
+        $matche->update(array_merge($request->all(),['status' => 'finished']));
 
         return response()->json($matche,200);
     }

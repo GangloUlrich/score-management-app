@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MatcheFormRequest;
 use App\Services\HandleErrorService;
 use App\Services\MatcheService;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class MatcheController extends Controller
         }
     }
 
-    public  function store(PlayerFormRequest $request){
+    public  function store(MatcheFormRequest $request){
         try {
             return  MatcheService::save($request);
         } catch (\Throwable $e) {
@@ -25,7 +26,7 @@ class MatcheController extends Controller
         }
     }
 
-    public  function update(PlayerFormRequest $request, $id){
+    public  function update(MatcheFormRequest $request, $id){
         try {
             return MatcheService::update($request,$id) ;
         } catch (\Throwable $e) {
