@@ -34,6 +34,23 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('teams/{id}', [\App\Http\Controllers\TeamController::class,'show']);
     Route::delete('teams/{id}', [\App\Http\Controllers\TeamController::class,'destroy']);
 
+    //Players
+    Route::get('players', [\App\Http\Controllers\PlayerController::class,'index']);
+    Route::post('players', [\App\Http\Controllers\PlayerController::class,'store']);
+    Route::post('players/{id}', [\App\Http\Controllers\PlayerController::class,'update']);
+    Route::get('players/{id}', [\App\Http\Controllers\PlayerController::class,'show']);
+    Route::delete('players/{id}', [\App\Http\Controllers\PlayerController::class,'destroy']);
+
+    //Matches
+    Route::get('matches', [\App\Http\Controllers\MatcheController::class,'index']);
+    Route::post('matches', [\App\Http\Controllers\MatcheController::class,'store']);
+    Route::post('matches/{id}', [\App\Http\Controllers\MatcheController::class,'update']);
+    Route::get('matches/{id}', [\App\Http\Controllers\MatcheController::class,'show']);
+    Route::delete('matches/{id}', [\App\Http\Controllers\MatcheController::class,'destroy']);
+
+
+
+
 
 
 });
