@@ -12,5 +12,9 @@ export class AuthUser {
     return this.user?.role == "admin";
   }
 
+  get isValid(): boolean {
+    return !!this.token;
+  }
+
 }
 

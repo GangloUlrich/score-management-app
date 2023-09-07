@@ -11,9 +11,9 @@ export class AuthenticationService {
   private storage: Storage;
   private _authSubjectBehavior: BehaviorSubject<AuthUser> = new BehaviorSubject<AuthUser>(new AuthUser());
   public authUser: Observable<AuthUser> = this._authSubjectBehavior.asObservable();
-  private userAuthenticated = false;
   constructor(private requester: ApiCoreService) {
     this.storage = localStorage;
+    this.getAuthenticatedUser();
   }
 
   register(data:any): Observable<User> {
@@ -23,11 +23,9 @@ export class AuthenticationService {
   login(data:any): Observable<void> {
     return this.requester.execute('/login',HttpMethod.POST,data).pipe(
       map(data => {
-        const authUser = new AuthUser();
-        authUser.user = data.user;
-        authUser.token = data.token;
+        let authUser = new AuthUser();
+        authUser = Object.assign(data);
         this.saveDataInLocalStorage('authUser',authUser,true);
-        this.userAuthenticated = true;
         this._authSubjectBehavior.next(authUser);
       })
     );
@@ -63,12 +61,8 @@ export class AuthenticationService {
     return this._authSubjectBehavior.getValue().token;
   }
 
-  isValidAUth(){
-    return this.userAuthenticated;
-  }
 
   logout(){
-    this.userAuthenticated = false;
     this.removeDataInLocalStorage('authUser');
     this._authSubjectBehavior.next(new AuthUser());
 
@@ -78,4 +72,11 @@ export class AuthenticationService {
     return this.requester.execute('/logout',HttpMethod.POST)
   }
 
+  private getAuthenticatedUser() {
+    let authUser = this.getDataInLocalStorage('authUser');
+    if (!!authUser) {
+      authUser = Object.assign(new AuthUser(), authUser);
+      this._authSubjectBehavior.next(authUser);
+    }
+  }
 }

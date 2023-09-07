@@ -1,14 +1,40 @@
-<form method="post" (ngSubmit)="connectUser()" [formGroup]="loginForm">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">SCOREMANAGER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div>
-    <label for="">Email</label>
-    <input type="email" formControlName="email">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link  text-white btn btn-danger text-uppercase me-lg-3" routerLink="/register">Register</a>
+        </li>
+      </ul>
+
+    </div>
+
   </div>
+</nav>
 
-  <div>
-    <label for="">Password</label>
-    <input type="password" formControlName="password">
-  </div>
+<div class="container p-5 d-flex justify-content-center ">
+  <form method="post" (ngSubmit)="connectUser()" [formGroup]="loginForm" class="col-5">
+    <div class="mb-3">
+      <h3 class="text-danger">Login</h3>
+    </div>
 
-  <button type="submit">Se connecter</button>
-</form>
+    <div class="mb-3">
+      <label class="form-label" for="">Email</label>
+      <input class="form-control" type="email" formControlName="email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Password</label>
+      <input class="form-control" type="password" formControlName="password">
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100">Se connecter</button>
+  </form>
+</div>
+

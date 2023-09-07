@@ -1,1 +1,63 @@
-<p>teams works!</p>
+<div class="container p-5">
+
+  <div class="my-3 text-center text-danger">
+    <h3>TEAMS</h3>
+  </div>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-dark" (click)="showForm()" *ngIf="authUser.isAdmin">Add team</button>
+  </div>
+  <table class="table table-striped ">
+    <thead class="table-dark">
+    <tr>
+      <th class="text-uppercase">#</th>
+      <th class="text-uppercase col-4">Name</th>
+      <th class="text-uppercase">coach</th>
+      <th class="text-uppercase">Matches</th>
+      <th class="text-uppercase">Win</th>
+      <th class="text-uppercase">Draw</th>
+      <th class="text-uppercase">lost</th>
+      <th class="text-uppercase" *ngIf="authUser.isAdmin">Actions</th>
+    </tr>
+    </thead>
+
+    <thead>
+    <tr *ngFor="let item of teams;">
+      <td class="text-uppercase">#</td>
+      <td class="text-uppercase col-4">{{ item.name}}</td>
+      <td class="text-uppercase">{{ item.coach}}</td>
+      <td class="text-uppercase">{{ item.matches}}</td>
+      <td class="text-uppercase">{{ item.win}}</td>
+      <td class="text-uppercase">{{ item.draw}}</td>
+      <td class="text-uppercase">{{ item.lost}}</td>
+      <td class="text-uppercase" *ngIf="authUser.isAdmin">
+        <a href=""><i class="pi pi-pencil"></i></a>
+      </td>
+
+    </tr>
+    </thead>
+
+  </table>
+</div>
+
+
+
+
+<p-dialog header="Add team" [(visible)]="visible" [style]="{width: '50vw'}">
+  <form method="post" (ngSubmit)="saveTeam()" [formGroup]="teamForm" class="col-5">
+    <div class="mb-3">
+      <h3 class="text-danger">Register</h3>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="">Name</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Coach</label>
+      <input class="form-control" type="email" formControlName="coach">
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100">Add</button>
+  </form>
+</p-dialog>

@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ApiCoreService} from "./Core/Services/api-core.service";
+import {ApiCoreService} from "./core/services/api-core.service";
 import localeFr from '@angular/common/locales/fr';
 import {HashLocationStrategy, LocationStrategy, registerLocaleData} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptorInterceptor} from "./Core/interceptor/auth-interceptor.interceptor";
-import {AuthGuard} from "./Core/guard/auth.guard";
+import {AuthInterceptorInterceptor} from "./core/interceptor/auth-interceptor.interceptor";
+import {AuthGuard} from "./core/guard/auth.guard";
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({

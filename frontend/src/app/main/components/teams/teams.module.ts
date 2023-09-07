@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { TeamsRoutingModule } from './teams-routing.module';
 import { TeamsComponent } from './teams.component';
+import {DialogModule} from "primeng/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { TeamsComponent } from './teams.component';
   ],
   imports: [
     CommonModule,
-    TeamsRoutingModule
+    TeamsRoutingModule,
+    DialogModule,
+    ReactiveFormsModule
   ]
 })
 export class TeamsModule { }
