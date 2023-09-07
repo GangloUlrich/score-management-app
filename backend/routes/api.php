@@ -49,6 +49,11 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::delete('matches/{id}', [\App\Http\Controllers\MatcheController::class,'destroy']);
 
 
+    //Predictions
+    Route::get('predictions/{$id}', [\App\Http\Controllers\MatcheController::class,'listByUser']);
+    Route::post('predictions', [\App\Http\Controllers\MatcheController::class,'save']);
+
+
 
 
 
