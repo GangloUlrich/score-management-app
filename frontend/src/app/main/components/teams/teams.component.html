@@ -22,16 +22,17 @@
     </thead>
 
     <thead>
-    <tr *ngFor="let item of teams;">
-      <td class="text-uppercase">#</td>
+    <tr *ngFor="let item of teams; let i = index">
+      <td class="text-uppercase">{{ i+1}}</td>
       <td class="text-uppercase col-4">{{ item.name}}</td>
-      <td class="text-uppercase">{{ item.coach}}</td>
-      <td class="text-uppercase">{{ item.matches}}</td>
-      <td class="text-uppercase">{{ item.win}}</td>
-      <td class="text-uppercase">{{ item.draw}}</td>
-      <td class="text-uppercase">{{ item.lost}}</td>
+      <td class="text-uppercase">{{ item.coach || 0}}</td>
+      <td class="text-uppercase">{{ item.matches || 0}}</td>
+      <td class="text-uppercase">{{ item.win || 0}}</td>
+      <td class="text-uppercase">{{ item.draw || 0}}</td>
+      <td class="text-uppercase">{{ item.lost || 0}}</td>
       <td class="text-uppercase" *ngIf="authUser.isAdmin">
-        <a href=""><i class="pi pi-pencil"></i></a>
+
+        <span class="cursor-pointer"><i class="pi pi-pencil text-primary"></i></span>
       </td>
 
     </tr>
@@ -42,12 +43,9 @@
 
 
 
+<p-dialog header="Add Team" [(visible)]="displayModal" [style]="{width: '50vw'}" [modal]="true">
+  <form method="post" (ngSubmit)="saveTeam()" [formGroup]="teamForm" >
 
-<p-dialog header="Add team" [(visible)]="visible" [style]="{width: '50vw'}">
-  <form method="post" (ngSubmit)="saveTeam()" [formGroup]="teamForm" class="col-5">
-    <div class="mb-3">
-      <h3 class="text-danger">Register</h3>
-    </div>
     <div class="mb-3">
       <label class="form-label" for="">Name</label>
       <input class="form-control" type="text" formControlName="name">
@@ -58,6 +56,9 @@
       <input class="form-control" type="email" formControlName="coach">
     </div>
 
-    <button type="submit" class="btn btn-dark w-100">Add</button>
+    <div class="col-6 center">
+      <button type="submit" class="btn btn-dark ">Add</button>
+    </div>
+
   </form>
 </p-dialog>

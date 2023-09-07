@@ -7,13 +7,16 @@ import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    HeaderComponent
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule
-  ]
+    declarations: [
+        MainComponent,
+        HeaderComponent
+    ],
+    exports: [
+        HeaderComponent
+    ],
+    imports: [
+        CommonModule,
+        MainRoutingModule
+    ]
 })
 export class MainModule { }

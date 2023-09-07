@@ -23,8 +23,7 @@ export class AuthenticationService {
   login(data:any): Observable<void> {
     return this.requester.execute('/login',HttpMethod.POST,data).pipe(
       map(data => {
-        let authUser = new AuthUser();
-        authUser = Object.assign(data);
+        let authUser = Object.assign(new AuthUser(), data);
         this.saveDataInLocalStorage('authUser',authUser,true);
         this._authSubjectBehavior.next(authUser);
       })
@@ -65,6 +64,7 @@ export class AuthenticationService {
   logout(){
     this.removeDataInLocalStorage('authUser');
     this._authSubjectBehavior.next(new AuthUser());
+    this.remoteLogout()
 
   }
 

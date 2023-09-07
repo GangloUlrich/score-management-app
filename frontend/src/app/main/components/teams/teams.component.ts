@@ -16,7 +16,7 @@ export class TeamsComponent implements OnInit, OnDestroy{
 
   private subscriptionAuthUser?: Subscription;
   public teams: Team[] = [];
-  visible = false;
+  displayModal = false;
 
   public teamForm: FormGroup;
 
@@ -55,13 +55,16 @@ export class TeamsComponent implements OnInit, OnDestroy{
 
   showForm(){
     this.teamForm.reset();
-    this.visible = true;
+    this.displayModal = true;
   }
 
   saveTeam() {
     if(this.teamForm.valid){
       this.teamService.add(this.teamForm.value).subscribe({
-        next: value => this.teams.unshift(value)
+        next: value => {
+          this.teams.unshift(value);
+          this.displayModal = false;
+        }
       })
     }
 

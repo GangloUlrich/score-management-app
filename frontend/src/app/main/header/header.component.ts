@@ -30,5 +30,8 @@ export class HeaderComponent implements  OnDestroy{
   }
 
 
+  logout(){
+    this.authUserService.logout();
+  }
 
 }

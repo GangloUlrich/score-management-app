@@ -9,6 +9,7 @@ import {HashLocationStrategy, LocationStrategy, registerLocaleData} from "@angul
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptorInterceptor} from "./core/interceptor/auth-interceptor.interceptor";
 import {AuthGuard} from "./core/guard/auth.guard";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -18,7 +19,8 @@ registerLocaleData(localeFr, 'fr');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ApiCoreService,
