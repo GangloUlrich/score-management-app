@@ -1,6 +1,7 @@
 import {Audit} from "./audit";
 
-export class Team extends Audit {
+export class Team {
+  id : number = 0
   name: string = ""
   coach: string = ""
   matches: number = 0;

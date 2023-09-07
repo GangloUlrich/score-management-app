@@ -9,21 +9,27 @@
         <div class="col-6">
 
           <h5 class="text-primary">Upcoming matches</h5>
-          <div class="col-12 mb-3">
+          <div *ngFor="let item of upcomingMatches" class="col-12 mb-3">
             <div class="card bg-dark text-white">
               <div class="card-body">
                 <div class="row align-items-center">
                   <div class="col-5 text-center">
-                    <h3>OMEGA</h3>
+                    <h3>{{item.home_team?.name}}</h3>
                   </div>
                   <div class="col-2 ">
                     <h4 class="text-center">VS</h4>
                   </div>
                   <div class="col-5 text-center">
-                    <h3>ALPHA</h3>
+                    <h3>{{item.away_team?.name}}</h3>
                   </div>
                 </div>
+                <div class="text-center mt-3">
+                  <button class="btn btn-danger" *ngIf="authUser.isAdmin" (click)="showForm(item)">Update Match score</button>
+                  <button class="btn btn-danger" *ngIf="authUser.isOrdinaryUser">Make prediction</button>
+                </div>
               </div>
+
+
 
             </div>
           </div>
@@ -31,36 +37,24 @@
         </div>
         <div class="col-6">
           <h5 class="text-dark">Matches finished</h5>
-          <div class="col-12 mb-3">
+          <div class="col-12 mb-3" *ngFor="let item of finishedMatches">
             <div class="card bg-light border-0">
               <div class="card-body">
                 <div class="row align-items-center">
                   <div class="col-5 text-center">
-                    <h3>OMEGA</h3>
+                    <h3>{{item.home_team?.name}}</h3>
                   </div>
                   <div class="col-2 ">
-                    <h4 class="text-center">4 - 1</h4>
+                    <h4 class="text-center">{{item.score_home + ' - ' + item.score_away}}</h4>
                   </div>
                   <div class="col-5 text-center">
-                    <h3>ALPHA</h3>
+                    <h3>{{item.away_team?.name}}</h3>
                   </div>
                 </div>
-                <div class="row align-items-center">
-                  <div class="col-5 text-center">
-                    <h6>1</h6>
-                  </div>
-                  <div class="col-2 ">
-                    <p class="text-center">goals</p>
-                  </div>
-                  <div class="col-5 text-center">
-                    <h6>2</h6>
-                  </div>
+                <div class="text-center">
+                  <button class="btn btn-danger" (click)="details(item)">See details</button>
                 </div>
 
-
-                <div class="text-center mt-3">
-                  <span class="text-danger"></span>
-                </div>
               </div>
 
             </div>
@@ -71,3 +65,70 @@
     </div>
   </div>
 
+
+<p-dialog header="Update Match score" [(visible)]="displayModal" [style]="{width: '50vw'}" [modal]="true">
+  <form method="post" (ngSubmit)="updateMatcheScore()" [formGroup]="matcheForm" >
+
+    <div class="col-12 mb-3">
+      <div class="row align-items-center">
+        <div class="col-5 text-center">
+          <h3>{{selectedMatch?.home_team?.name}}</h3>
+        </div>
+        <div class="col-2 ">
+          <h4 class="text-center">VS</h4>
+        </div>
+        <div class="col-5 text-center">
+          <h3>{{selectedMatch?.away_team?.name}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row justify-content-center">
+        <div class="col-2 mb-3">
+          <input class="form-control" type="number" formControlName="score_home">
+        </div>
+        <div class="col-5 ">
+          <h5 class="text-center">Goals</h5>
+        </div>
+        <div class="col-2 mb-3">
+          <input class="form-control" type="number" formControlName="score_away">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row justify-content-center">
+        <div class="col-2 mb-3">
+          <input class="form-control" type="text" formControlName="pos_home">
+        </div>
+        <div class="col-5 ">
+          <h5 class="text-center">Possession</h5>
+        </div>
+        <div class="col-2 mb-3">
+          <input class="form-control" type="text" formControlName="pos_away">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row justify-content-center">
+        <div class="col-2 mb-3">
+          <input class="form-control" type="number" formControlName="card_home">
+        </div>
+        <div class="col-5 ">
+          <h5 class="text-center">Cards</h5>
+        </div>
+        <div class="col-2 mb-3">
+          <input class="form-control" type="number" formControlName="card_away">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-dark w-50 ">Add</button>
+    </div>
+
+  </form>
+</p-dialog>

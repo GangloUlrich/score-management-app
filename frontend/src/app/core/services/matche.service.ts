@@ -3,29 +3,27 @@ import {ApiCoreService, HttpMethod} from "./api-core.service";
 import {Observable} from "rxjs";
 import {Team} from "../models/team";
 import {Player} from "../models/player";
+import {Matche} from "../models/matche";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamService {
+export class MatcheService {
 
-  readonly  ContextPath = "/teams";
-  readonly  ContextPathPlayer = "/players";
+  readonly  ContextPath = "/matches";
   constructor(private  client: ApiCoreService) {
 
   }
 
-  all(): Observable<Team[]>{
+  all(): Observable<Matche[]>{
     return this.client.execute(this.ContextPath,HttpMethod.GET)
   }
 
-  add(data:any): Observable<Team>{
-    return this.client.execute(this.ContextPath,HttpMethod.POST,data)
+  update(data:any, id:number): Observable<Matche>{
+    return this.client.execute(this.ContextPath+'/'+id,HttpMethod.POST,data)
   }
 
-  addPlayer(data:any): Observable<Player>{
-    return this.client.execute(this.ContextPathPlayer,HttpMethod.POST,data)
+  getMatche(matcheId: number) {
+    return this.client.execute(this.ContextPath+'/'+matcheId,HttpMethod.GET)
   }
-
-
 }

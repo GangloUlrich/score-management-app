@@ -25,8 +25,13 @@ const routes: Routes = [{
       canActivate: [AuthGuard]
 
     },
+    {
+      path: 'matches/details/:id',
+      loadChildren: () => import('./components/details-match/details-match.module').then(m => m.DetailsMatchModule)
+    },
   ]
 },
+
 
 ];
 

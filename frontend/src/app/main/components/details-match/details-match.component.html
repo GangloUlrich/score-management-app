@@ -1,0 +1,77 @@
+<div class="container p-5">
+
+  <div class="my-3 text-center text-danger">
+    <h2>DETAILS MATCHES</h2>
+  </div>
+
+  <div class="col-12 py-3">
+    <div class="row justify-content-center">
+      <div class="col-8">
+
+        <div  class="col-12 mb-3">
+          <div class="card bg-dark text-white">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-5 text-center">
+                  <h3>{{match?.home_team?.name}}</h3>
+                </div>
+                <div class="col-2 ">
+                  <h4 class="text-center">{{match?.score_home +' - '+ match?.score_away}}</h4>
+                </div>
+                <div class="col-5 text-center">
+                  <h3>{{match?.away_team?.name}}</h3>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div  class="col-12  py-3">
+          <div class="row align-items-center">
+            <div class="col-5 text-center">
+             <p>{{match?.score_home}}</p>
+            </div>
+            <div class="col-2 ">
+              <h5 class="text-center">Goals</h5>
+            </div>
+            <div class="col-5 text-center">
+              <p>{{match?.score_away}}</p>
+            </div>
+          </div>
+        </div>
+        <div  class="col-12  py-3">
+          <div class="row align-items-center">
+            <div class="col-5 text-center">
+              <p>{{match?.pos_home}}</p>
+            </div>
+            <div class="col-2 ">
+              <h5 class="text-center">Possession</h5>
+            </div>
+            <div class="col-5 text-center">
+              <p>{{match?.pos_away}}</p>
+            </div>
+          </div>
+        </div>
+        <div  class="col-12  py-3">
+          <div class="row align-items-center">
+            <div class="col-5 text-center">
+              <p>{{match?.card_home}}</p>
+            </div>
+            <div class="col-2 ">
+              <h5 class="text-center">Cards</h5>
+            </div>
+            <div class="col-5 text-center">
+              <p>{{match?.card_away}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

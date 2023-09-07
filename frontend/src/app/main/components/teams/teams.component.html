@@ -5,7 +5,8 @@
   </div>
 
   <div class="d-flex justify-content-end mb-3">
-    <button class="btn btn-dark" (click)="showForm()" *ngIf="authUser.isAdmin">Add team</button>
+    <button class="btn btn-dark me-3" (click)="showForm()" *ngIf="authUser.isAdmin">Add team</button>
+    <button class="btn btn-danger" (click)="showPlayerForm()" *ngIf="authUser.isAdmin">Add player</button>
   </div>
   <table class="table table-striped ">
     <thead class="table-dark">
@@ -54,6 +55,30 @@
     <div class="mb-3">
       <label class="form-label" for="">Coach</label>
       <input class="form-control" type="email" formControlName="coach">
+    </div>
+
+    <div class="col-6 center">
+      <button type="submit" class="btn btn-dark ">Add</button>
+    </div>
+
+  </form>
+</p-dialog>
+
+
+<p-dialog header="Add player" [(visible)]="displayPlayerModal" [style]="{width: '50vw'}" [modal]="true">
+  <form method="post" (ngSubmit)="savePlayer()" [formGroup]="playerForm" >
+
+    <select class="form-select" formControlName="team_id">
+      <option *ngFor="let item of teams" value="{{item.id}}">{{item.name }}</option>
+    </select>
+    <div class="mb-3">
+      <label class="form-label" for="">Name</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Position</label>
+      <input class="form-control" type="text" formControlName="position">
     </div>
 
     <div class="col-6 center">

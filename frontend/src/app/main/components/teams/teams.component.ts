@@ -19,12 +19,20 @@ export class TeamsComponent implements OnInit, OnDestroy{
   displayModal = false;
 
   public teamForm: FormGroup;
+  public playerForm: FormGroup;
+  displayPlayerModal: boolean = false;
 
   constructor(private teamService: TeamService, private formBuilder: FormBuilder, private  authService: AuthenticationService) {
     this.subscribeOnAuthUser();
     this.teamForm = this.formBuilder.group({
       name:['',Validators.required],
       coach:['',Validators.required],
+    })
+
+    this.playerForm = this.formBuilder.group({
+      name:['',Validators.required],
+      team_id:['',Validators.required],
+      position:['',Validators.required],
     })
   }
 
@@ -68,5 +76,20 @@ export class TeamsComponent implements OnInit, OnDestroy{
       })
     }
 
+  }
+
+  savePlayer() {
+    if(this.playerForm.valid){
+      this.teamService.addPlayer(this.playerForm.value).subscribe({
+        next: value => {
+          this.displayPlayerModal = false;
+        }
+      })
+    }
+
+  }
+
+  showPlayerForm() {
+    this.displayPlayerModal = true;
   }
 }
