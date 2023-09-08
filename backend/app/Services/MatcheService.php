@@ -8,6 +8,9 @@ use App\Models\Team;
 use App\Models\User;
 use App\Notifications\LeaderBoardNotification;
 use Illuminate\Support\Facades\Notification;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\Firestore;
+
 
 class MatcheService
 {
@@ -56,6 +59,8 @@ class MatcheService
             'points' => ($team->points + 3),
         ]);
 
+
+        self::updateOnFirebase($teamId);
     }
 
     public static function updateLost($teamId)
@@ -65,6 +70,7 @@ class MatcheService
             'matches' => ($team->matches + 1),
             'lost' => ($team->lost + 1),
         ]);
+        self::updateOnFirebase($teamId);
     }
 
     public static function updateDraw($teamId)
@@ -75,6 +81,7 @@ class MatcheService
             'draw' => ($team->matches + 1),
             'points' => ($team->matches + 1)
         ]);
+        self::updateOnFirebase($teamId);
     }
 
     public static function show($id)
@@ -90,4 +97,12 @@ class MatcheService
         return response()->json('', 204);
     }
 
+    public static function updateOnFirebase($id)
+    {
+        $firebase = (new Factory())->withServiceAccount(base_path(env('GOOGLE_APPLICATION_CREDENTIALS')))->withDatabaseUri(env("FIREBASE_DATABASE_URL"));
+        $data = Team::find($id);
+        $collection = $firebase->database()->collection('teams');
+        $document = $collection->document($id);
+        $document->set($data);
+    }
 }
