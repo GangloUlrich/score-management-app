@@ -47,4 +47,9 @@ class User extends Authenticatable
     public function predictions() {
         $this->hasMany(Prediction::class);
     }
+
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
+    }
 }
