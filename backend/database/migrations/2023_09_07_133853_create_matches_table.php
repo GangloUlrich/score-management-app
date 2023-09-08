@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('home_team');
             $table->unsignedBigInteger('away_team');
-            $table->integer('score_home')->nullable();
-            $table->integer('score_away')->nullable();
+            $table->integer('score_home')->nullable()->default(0);
+            $table->integer('score_away')->nullable()->default(0);
             $table->string('pos_home')->nullable();
             $table->string('pos_away')->nullable();
-            $table->integer('card_home')->nullable();
-            $table->integer('card_away')->nullable();
+            $table->integer('card_home')->nullable()->default(0);
+            $table->integer('card_away')->nullable()->default(0);
             $table->enum('status',['finished','upcoming'])->default('upcoming');
             $table->foreign('home_team')->references('id')->on('teams');
             $table->foreign('away_team')->references('id')->on('teams');

@@ -54,6 +54,13 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('predictions', [\App\Http\Controllers\MatcheController::class,'save']);
 
 
+    //Exports
+
+    Route::get('exports/matches', [\App\Http\Controllers\ExportController::class,'exportMatches']);
+    Route::get('exports/leaderboard', [\App\Http\Controllers\ExportController::class,'exportLeaderBoard']);
+
+
+
 
 
 
