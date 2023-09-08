@@ -10,6 +10,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptorInterceptor} from "./core/interceptor/auth-interceptor.interceptor";
 import {AuthGuard} from "./core/guard/auth.guard";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -20,7 +23,9 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     ApiCoreService,

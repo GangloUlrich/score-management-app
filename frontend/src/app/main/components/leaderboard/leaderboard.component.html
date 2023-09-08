@@ -16,13 +16,13 @@
     </thead>
 
     <thead>
-    <tr>
-      <td class="text-uppercase">#</td>
-      <td class="text-uppercase col-4">Team</td>
-      <td class="text-uppercase">Win</td>
-      <td class="text-uppercase">Draw</td>
-      <td class="text-uppercase">Lost</td>
-      <td class="text-uppercase">Points</td>
+    <tr *ngFor="let item of teams; let i = index">
+      <td class="text-uppercase">{{ i+1}}</td>
+      <td class="text-uppercase col-4">{{ item.name}}</td>
+      <td class="text-uppercase">{{item.win}}</td>
+      <td class="text-uppercase">{{item.draw}}</td>
+      <td class="text-uppercase">{{item.lost}}</td>
+      <td class="text-uppercase">{{item.points}}</td>
     </tr>
     </thead>
 
