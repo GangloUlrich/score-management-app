@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+  --facebook: #3B5998;
+  --twitter: #55ACEE;
+  --linkedin:#007bb5;
+}
 .cursor-pointer{
   cursor:pointer !important;
+}
+
+.facebook {
+  color: var(--facebook);
+}
+
+.twitter {
+  color: var(--twitter);
+}
+
+.linkedin {
+  color: var(--linkedin);
 }

@@ -8,6 +8,7 @@ import {AuthenticationService} from "../../../core/services/authentication.servi
 import {Matche} from "../../../core/models/matche";
 import {MatcheService} from "../../../core/services/matche.service";
 import {Router} from "@angular/router";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-matches',
@@ -26,6 +27,8 @@ export class MatchesComponent implements  OnInit, OnDestroy{
   public matcheForm: FormGroup;
   public selectedMatch: Matche | undefined;
 
+  link = environment.app_url+'/matches/';
+  twitterLink = "https://twitter.com/intent/tweet?text=" + encodeURIComponent('Match score') + "&url=" + this.link
   constructor(private matcheService: MatcheService, private formBuilder: FormBuilder, private  authService: AuthenticationService,private router: Router) {
     this.subscribeOnAuthUser();
     this.matcheForm = this.formBuilder.group({

@@ -24,13 +24,15 @@ export class DetailsMatchComponent implements OnInit,OnDestroy{
   private  routeId: number;
 
   public  link : string = ""
+  public  twitterLink : string = ""
   public  shareLinkedin : string = ""
 
 
   constructor(private matcheService: MatcheService,private  route: ActivatedRoute, private  authService: AuthenticationService,private router: Router) {
     this.subscribeOnAuthUser();
     this.routeId = Number(this.route.snapshot.params['id']);
-    this.link = environment.base_api_url+'matches/details/'+this.routeId;
+    this.link = environment.app_url+'/matches/details/'+this.routeId;
+    this.twitterLink = "https://twitter.com/intent/tweet?text=" + encodeURIComponent('Match score') + "&url=" + this.link
     this.loaddetails(this.routeId)
   }
 
