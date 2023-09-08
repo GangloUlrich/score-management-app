@@ -15,7 +15,7 @@ import {environment} from "../../../../environments/environment";
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css']
 })
-export class MatchesComponent implements  OnInit, OnDestroy{
+export class MatchesComponent implements OnInit, OnDestroy {
   public authUser: AuthUser = new AuthUser();
   private subscriptionAuthUser?: Subscription;
 
@@ -27,33 +27,32 @@ export class MatchesComponent implements  OnInit, OnDestroy{
   public matcheForm: FormGroup;
   public selectedMatch: Matche | undefined;
 
-  link = environment.app_url+'/matches/';
+  link = environment.app_url + '/matches/';
   twitterLink = "https://twitter.com/intent/tweet?text=" + encodeURIComponent('Match score') + "&url=" + this.link
-  constructor(private matcheService: MatcheService, private formBuilder: FormBuilder, private  authService: AuthenticationService,private router: Router) {
+
+  constructor(private matcheService: MatcheService, private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.subscribeOnAuthUser();
     this.matcheForm = this.formBuilder.group({
-      score_home:['',Validators.required],
-      score_away:['',Validators.required],
-      card_home:['',Validators.required],
-      card_away:['',Validators.required],
+      score_home: ['', Validators.required],
+      score_away: ['', Validators.required],
+      card_home: ['', Validators.required],
+      card_away: ['', Validators.required],
       pos_home: ['', Validators.required],
       pos_away: ['', Validators.required],
     })
   }
 
 
-
-
   ngOnInit(): void {
     this.loadMatches()
   }
 
-  loadMatches(){
+  loadMatches() {
     this.matcheService.all().subscribe({
       next: value => {
         this.matches = value;
-        this.upcomingMatches = this.matches.filter(item=> item.status == "upcoming");
-        this.finishedMatches = this.matches.filter(item=> item.status == "finished");
+        this.upcomingMatches = this.matches.filter(item => item.status == "upcoming");
+        this.finishedMatches = this.matches.filter(item => item.status == "finished");
       }
 
     })
@@ -66,12 +65,12 @@ export class MatchesComponent implements  OnInit, OnDestroy{
   private subscribeOnAuthUser() {
     this.subscriptionAuthUser = this.authService
       .authUser
-      .subscribe( (authUser: AuthUser) => {
+      .subscribe((authUser: AuthUser) => {
         this.authUser = authUser;
       });
   }
 
-  showForm(item: Matche){
+  showForm(item: Matche) {
     this.selectedMatch = item;
     console.log(this.selectedMatch)
     this.matcheForm.reset();
@@ -79,24 +78,30 @@ export class MatchesComponent implements  OnInit, OnDestroy{
   }
 
 
-
   updateMatcheScore() {
     let data = this.matcheForm.value;
     data.home_team = this.selectedMatch?.home_team?.id
     data.away_team = this.selectedMatch?.away_team?.id
-      this.matcheService.update(data,this.selectedMatch!.id).subscribe(
-        {
-          next: value => {
-            this.router.navigate(['matches/details/' + this.selectedMatch!.id])
-            this.selectedMatch = undefined;
-            this.matcheForm.reset();
-            this.displayModal = false;
-          }
+    this.matcheService.update(data, this.selectedMatch!.id).subscribe(
+      {
+        next: value => {
+          this.router.navigate(['matches/details/' + this.selectedMatch!.id])
+          this.selectedMatch = undefined;
+          this.matcheForm.reset();
+          this.displayModal = false;
         }
-      )
-    }
+      }
+    )
+  }
 
   details(item: Matche) {
-    this.router.navigate(['/matches/details/'+item.id])
+    this.router.navigate(['/matches/details/' + item.id])
   }
+
+  exportMatchesScores() {
+    this.matcheService.exportMatchesScores().subscribe({
+      next: response => this.matcheService.openFileInBrowserTargetBlank('matches-Scores',response)
+    });
+  }
+
 }
