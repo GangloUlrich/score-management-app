@@ -70,5 +70,5 @@ The default admin credentials are :
 ## ScreenShots
 
 ![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/3ff6632b-3c39-4cef-a2df-8abedae447b7)
-![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/b47a5692-46ab-4866-92fe-491780e9d54b)
+![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/47ac8716-8af3-4cbc-918d-058bb9cb9249)
 ![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/1b7ca932-c7c4-4c57-9902-bec32c30cd5f)
