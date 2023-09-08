@@ -1,0 +1,86 @@
+<div class="container p-5">
+
+  <div class="my-3 text-center text-danger">
+    <h2>DETAILS MATCH</h2>
+  </div>
+
+  <div class="col-12 py-3">
+    <div class="row justify-content-center">
+      <div class="col-8 position-relative">
+        <div  class="col-12 mb-3">
+          <div class="card bg-dark text-white">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-5 text-center">
+                  <h3>{{match?.home_team?.name}}</h3>
+                </div>
+                <div class="col-2 ">
+                  <h4 class="text-center">{{match?.score_home +' - '+ match?.score_away}}</h4>
+                </div>
+                <div class="col-5 text-center">
+                  <h3>{{match?.away_team?.name}}</h3>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div  class="col-12  py-3">
+          <div class="row align-items-center">
+            <div class="col-5 text-center">
+             <p>{{match?.score_home}}</p>
+            </div>
+            <div class="col-2 ">
+              <h5 class="text-center">Goals</h5>
+            </div>
+            <div class="col-5 text-center">
+              <p>{{match?.score_away}}</p>
+            </div>
+          </div>
+        </div>
+        <div  class="col-12  py-3">
+          <div class="row align-items-center">
+            <div class="col-5 text-center">
+              <p>{{match?.pos_home}}</p>
+            </div>
+            <div class="col-2 ">
+              <h5 class="text-center">Possession</h5>
+            </div>
+            <div class="col-5 text-center">
+              <p>{{match?.pos_away}}</p>
+            </div>
+          </div>
+        </div>
+        <div  class="col-12  py-3">
+          <div class="row align-items-center">
+            <div class="col-5 text-center">
+              <p>{{match?.card_home}}</p>
+            </div>
+            <div class="col-2 ">
+              <h5 class="text-center">Cards</h5>
+            </div>
+            <div class="col-5 text-center">
+              <p>{{match?.card_away}}</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 text-center mt-5">
+          <h6>Share on </h6>
+          <div class="d-flex justify-content-center">
+            <a [href]="'https://www.linkedin.com/sharing/share-offsite/?url=' + link" target="_blank"  class="btn  me-1"><i class="fab fa-linkedin fa-2x linkedin"></i></a>
+            <a [href]="twitterLink" target="_blank" class="btn  me-1"><i class="fab fa-twitter-square fa-2x twitter"></i></a>
+            <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + link" target="_blank" class="btn  me-1"><i class="fab fa-square-facebook fa-2x facebook"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

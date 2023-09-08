@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="container p-5 d-flex justify-content-center ">
+  <form method="post" (ngSubmit)="connectUser()" [formGroup]="loginForm" class="col-5">
+    <div class="mb-3">
+      <h3 class="text-danger">Login</h3>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Email</label>
+      <input class="form-control" type="email" formControlName="email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Password</label>
+      <input class="form-control" type="password" formControlName="password">
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100">Se connecter</button>
+  </form>
+</div>
+

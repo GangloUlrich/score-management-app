@@ -1,0 +1,89 @@
+<div class="container p-5">
+
+  <div class="my-3 text-center text-danger">
+    <h3>TEAMS</h3>
+  </div>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-dark me-3" (click)="showForm()" *ngIf="authUser.isAdmin">Add team</button>
+    <button class="btn btn-danger" (click)="showPlayerForm()" *ngIf="authUser.isAdmin">Add player</button>
+  </div>
+  <table class="table table-striped ">
+    <thead class="table-dark">
+    <tr>
+      <th class="text-uppercase">#</th>
+      <th class="text-uppercase col-4">Name</th>
+      <th class="text-uppercase">coach</th>
+      <th class="text-uppercase">Matches</th>
+      <th class="text-uppercase">Win</th>
+      <th class="text-uppercase">Draw</th>
+      <th class="text-uppercase">lost</th>
+      <th class="text-uppercase" *ngIf="authUser.isAdmin">Actions</th>
+    </tr>
+    </thead>
+
+    <thead>
+    <tr *ngFor="let item of teams; let i = index">
+      <td class="text-uppercase">{{ i+1}}</td>
+      <td class="text-uppercase col-4">{{ item.name}}</td>
+      <td class="text-uppercase">{{ item.coach || 0}}</td>
+      <td class="text-uppercase">{{ item.matches || 0}}</td>
+      <td class="text-uppercase">{{ item.win || 0}}</td>
+      <td class="text-uppercase">{{ item.draw || 0}}</td>
+      <td class="text-uppercase">{{ item.lost || 0}}</td>
+      <td class="text-uppercase" *ngIf="authUser.isAdmin">
+
+        <span class="cursor-pointer"><i class="pi pi-pencil text-primary"></i></span>
+      </td>
+
+    </tr>
+    </thead>
+
+  </table>
+</div>
+
+
+
+<p-dialog header="Add Team" [(visible)]="displayModal" [style]="{width: '50vw'}" [modal]="true">
+  <form method="post" (ngSubmit)="saveTeam()" [formGroup]="teamForm" >
+
+    <div class="mb-3">
+      <label class="form-label" for="">Name</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Coach</label>
+      <input class="form-control" type="email" formControlName="coach">
+    </div>
+
+    <div class="col-6 center">
+      <button type="submit" class="btn btn-dark ">Add</button>
+    </div>
+
+  </form>
+</p-dialog>
+
+
+<p-dialog header="Add player" [(visible)]="displayPlayerModal" [style]="{width: '50vw'}" [modal]="true">
+  <form method="post" (ngSubmit)="savePlayer()" [formGroup]="playerForm" >
+
+    <select class="form-select" formControlName="team_id">
+      <option *ngFor="let item of teams" value="{{item.id}}">{{item.name }}</option>
+    </select>
+    <div class="mb-3">
+      <label class="form-label" for="">Name</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="">Position</label>
+      <input class="form-control" type="text" formControlName="position">
+    </div>
+
+    <div class="col-6 center">
+      <button type="submit" class="btn btn-dark ">Add</button>
+    </div>
+
+  </form>
+</p-dialog>

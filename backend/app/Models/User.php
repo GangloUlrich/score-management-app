@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function predictions() {
+        $this->hasMany(Prediction::class);
+    }
+
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
+    }
 }
