@@ -64,4 +64,11 @@ Copy the `.env.example` file, renaming it to `.env`.
 ---
 >The firestore configurations were left in the project by default in order to facilitate the startup of the application and reduce the account creation process
 
+The default admin credentials are :
+> Email: admin@gmail.com    
+> Password : Epitech2023
 ## ScreenShots
+
+![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/3ff6632b-3c39-4cef-a2df-8abedae447b7)
+![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/b47a5692-46ab-4866-92fe-491780e9d54b)
+![image](https://github.com/GangloUlrich/score-management-app/assets/60970840/1b7ca932-c7c4-4c57-9902-bec32c30cd5f)

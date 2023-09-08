@@ -25,7 +25,7 @@ export class LoginComponent {
   connectUser() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: ()=> { this.router.navigate(['/dashboard']);
+        next: ()=> { this.router.navigate(['/']);
         }
       })
     }

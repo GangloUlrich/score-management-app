@@ -60,7 +60,6 @@ class MatcheService
         ]);
 
 
-        self::updateOnFirebase($teamId);
     }
 
     public static function updateLost($teamId)
@@ -70,7 +69,6 @@ class MatcheService
             'matches' => ($team->matches + 1),
             'lost' => ($team->lost + 1),
         ]);
-        self::updateOnFirebase($teamId);
     }
 
     public static function updateDraw($teamId)
@@ -81,7 +79,6 @@ class MatcheService
             'draw' => ($team->matches + 1),
             'points' => ($team->matches + 1)
         ]);
-        self::updateOnFirebase($teamId);
     }
 
     public static function show($id)
